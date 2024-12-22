@@ -1,0 +1,48 @@
+<?php
+require_once 'DatabaseHelper.php';
+require_once 'constants.php';
+
+$db = new DatabaseHelper('localhost', 'test_db', 'root', 'password');
+
+// Select query
+$logged_on_user_id = $_SESSION['logged_in_user_id'];
+$sql = "SELECT * FROM " . TableNames::Users . " WHERE is_verified = 1 AND user_type = ? AND id != ?";
+$params = [1, $logged_on_user_id];
+$list = $db->query($sql, $params, ['fetchMode' => 'list']);
+
+foreach ($list as $user) {
+    echo $user['name'] . "<br>";
+}
+
+// Insert query
+$data = [
+    'name' => 'John Doe',
+    'email' => 'john.doe@example.com',
+    'is_verified' => 1,
+    'user_type' => 2
+];
+$db->insert(TableNames::Users, $data);
+
+// Update query
+$data = ['email' => 'new.email@example.com'];
+$condition = 'id = :id';
+$conditionParams = ['id' => 1];
+$db->update(TableNames::Users, $data, $condition, $conditionParams);
+
+// Delete query
+
+$conditions = [
+    'learner_id' => 123,
+    'tutor_id'   => 456
+];
+
+$dbHelper = new DatabaseHelper();
+$result = $dbHelper->delete('contracts', $conditions);
+
+if ($result) {
+    echo "Record(s) deleted successfully.";
+} else {
+    echo "Error deleting record(s).";
+}
+
+?>

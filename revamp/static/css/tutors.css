@@ -1,0 +1,93 @@
+header .nav .nav-link {
+    font-size: 14px;
+    min-width: 100px;
+    text-align: center;
+    color: #6f6e75;
+}
+
+header .nav .nav-link.link-active {
+    font-weight: 600;
+    border: 2px solid #FB6339;
+    border-radius: 2rem;
+    color: var(--accent-dark);
+}
+
+section.section-choose-tutors {
+    background: var(--accent-dark);
+    color: white;
+    padding: 50px 128px;
+}
+
+section.section-choose-tutors img {
+    border-radius: 6px;
+}
+
+section.section-choose-tutors h4 {
+    color: #FF9525;
+}
+
+section.tutors-list .tutors-list-view {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+@media (max-width: 992px) { /* For tablets and smaller screens */
+    section.tutors-list .tutors-list-view {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) { /* For phones and smaller screens */
+    section.tutors-list .tutors-list-view {
+        grid-template-columns: 1fr;
+    }
+}
+
+section.tutors-list .tutors-list-view .card {
+    border-radius: 0.5rem;
+}
+
+section.tutors-list .tutors-list-view .card .profile-photo {
+    border-radius: 50%;
+    border: 2px solid #f1f4f7;
+    width: 90px;
+    height: 90px;
+}
+
+section.tutors-list .tutors-list-view .card .tutor-name {
+    font-family: 'Poppins-SemiBold';
+    color: var(--accent-dark);
+}
+
+
+/* section.tutors-list .tutor-card {
+    width: 350px;
+    min-height: 300px;
+    overflow: hidden;
+    border-radius: 0.5rem;
+}
+
+section.tutors-list .tutor-card .card-cover-pic {
+    position: relative;
+    height: 240px;
+}
+
+section.tutors-list .tutor-card .card-img-top {
+    position: absolute;
+}
+
+section.tutors-list .tutor-card .profile-photo-wrapper {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+section.tutors-list .tutor-card .tutor-profile-pic {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 5px solid white;
+}
+ */
