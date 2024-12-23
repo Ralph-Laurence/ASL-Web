@@ -31,8 +31,13 @@ $hiredTutorIdsList  = $dbhelper->query(
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    <!-- FRAMEWORKS, LIBRARIES -->
     <link rel="shortcut icon" href="../revamp/static/img/logo-s.png" type="image/x-icon">
     <link rel="stylesheet" href="../revamp/static/lib/bootstrap5/bootstrap.min.css">
+    <link rel="stylesheet" href="../revamp/static/lib/fontawesome6.7.2/css/fontawesome.min.css">
+    <link rel="stylesheet" href="../revamp/static/lib/fontawesome6.7.2/css/solid.min.css">
+
+    <!-- MAIN STYLES -->
     <link rel="stylesheet" href="../revamp/static/css/root.css">
     <link rel="stylesheet" href="../revamp/static/css/tutors.css">
 </head>
@@ -57,16 +62,25 @@ $hiredTutorIdsList  = $dbhelper->query(
 
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <small><?php echo $_SESSION["logged_in_user"]["username"]; ?></small>
                         <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <!-- <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li> -->
+                        <li>
+                            <a class="dropdown-item text-14" href="#">
+                                <i class="fas fa-user me-2"></i>My Profile
+                            </a>
+                        </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        <li>
+                            <a class="dropdown-item text-14" href="#">
+                                <i class="fas fa-power-off me-2"></i>Sign Out
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -84,18 +98,12 @@ $hiredTutorIdsList  = $dbhelper->query(
                 <h4 class="mb-3">Many ASL Tutors To Choose From</h4>
                 <p class="msw-justify">
                     You can choose from a diverse array of American Sign Language tutors to meet your learning needs.
-                    Whether you're a beginner or looking to advance your skills, our experienced tutors are here to
-                    help you achieve your goals. Scroll down to browse through our list of tutors or use the search bar
-                    to find a tutor by name. Book a lesson today and start your journey towards mastering American Sign Language.
+                    Whether you're a beginner or looking to advance your skills, our knowledgeable tutors are here to help
+                    you. Browse through our list of tutors and select the one that best fits your learning style and preferences.
+                    <br><br>Don't miss the opportunity to connect with passionate and knowledgeable tutors who are dedicated to your learning success.
+                    Book a lesson today and start your journey towards mastering American Sign Language.
                 </p>
-                <div class="find-tutor-wrapper d-flex gap-2 align-items-center">
-                    <div class="form-group">
-                        <label for="input-find-tutor">Search Tutor</label>
-                        <input type="text" class="form-control" id="input-find-tutor" placeholder="Find tutor by name" aria-describedby="find-tutor-help">
-                        <small id="find-tutor-help" class="form-text text-muted">You may enter the tutor's firstname or lastname.</small>
-                    </div>
-                    <button class="btn btn-danger grad-btn-danger">Find Tutor</button>
-                </div>
+                
             </div>
             <div class="col text-center">
                 <img src="../revamp/static/img/section-choose-tutors.png" alt="tutor-session" height="320">
@@ -104,60 +112,88 @@ $hiredTutorIdsList  = $dbhelper->query(
 
     </section>
 
-    <section class="my-4 pt-5 pb-2">
-        <h3 class="text-center">Browse from <?= count($tutorsList) ?> ASL tutors</h3>
+    <hr class="mt-4 ">
+    <section class="my-4 px-4 control-ribbon">
+        <div class="row">
+            <div class="col">
+                <div class="d-flex h-100 align-items-center gap-2">
+                    <h5 class="m-0">Browse tutors</h5>
+                    <h6 class="m-0">(<?= count($tutorsList) ?> available)</h6>
+                </div>
+            </div>
+            <div class="col d-flex flex-row align-items-center justify-content-end gap-2">
+                <div class="dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle sign-lingua-dropdown-button" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                        Tutor Fluency
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <li><button class="dropdown-item" type="button">Action</button></li>
+                        <li><button class="dropdown-item" type="button">Another action</button></li>
+                        <li><button class="dropdown-item" type="button">Something else here</button></li>
+                    </ul>
+                </div>
+                <div class="find-tutor-wrapper d-flex gap-2 align-items-center">
+                    <div class="form-group">
+                        <input type="text" class="form-control sign-lingua-input-field" id="input-find-tutor" placeholder="Tutor name" aria-describedby="find-tutor-help">
+                    </div>
+                    <button href="#" class="btn btn-secondary search-button">
+                        <i class="fas fa-magnifying-glass text-white"></i>
+                    </button>
+                    <!-- <button class="btn btn-warning grad-btn-danger">Find Tutor</button> -->
+                </div>
+            </div>
+        </div>
     </section>
+    <hr>
 
     <section class="tutors-list p-4">
         <div class="tutors-list-view">
             <?php foreach ($tutorsList as $key => $obj): ?>
                 <?php
-                $profile_photo = $obj["profile_photo"] != "" ? $obj["profile_photo"] : $default_avatar;
-                $profile_name = $obj['firstname'].' '.$obj['lastname'];
-                //$hireStatus = !empty($hiredTutorIdsList) && in_array($item['id'], $hiredTutorIdsList) ? 'hired' : '';
-            ?>
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <div class="row px-3">
-                        <div class="col-4 gx-0">
-                            <img src="<?= $profile_photo ?>" class="profile-photo" alt="profile-photo">
-                        </div>
-                        <div class="col"></div>
-                    </div>
-                    <h6 class="card-title tutor-name my-3"><?= $profile_name ?></h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            <?php endforeach; ?>
-        </div>
-        <!-- <div class="row mx-3 mb-5">
-            < ?php foreach ($tutorsList as $key => $obj): ?>
-                < ?php
-                $profile_photo = $obj["profile_photo"] != "" ? $obj["profile_photo"] : $default_avatar;
 
+                $defaultAvatar      = "../revamp/static/img/default_avatar.png";
+                $profile_photo      = $obj["profile_photo"] != "" ? $obj["profile_photo"] : $defaultAvatar;
+                $profile_name       = $obj['firstname'] . ' ' . $obj['lastname'];
+                $profile_verified   = $obj['is_verified'] == 1;
+                $isHired            = !empty($hiredTutorIdsList) && in_array($obj['id'], $hiredTutorIdsList);
+                $hiredIndicator     = !$isHired ? 'd-none' : '';
+                $fluencyLevel       = FluencyLevels::Tutor[$obj['fluency']];
+                $fluencyBadgeIcon   = $fluencyLevel['Badge Icon'];
+                $fluencyBadgeColor  = $fluencyLevel['Badge Color'];
+                $fluencyLevelText   = $fluencyLevel['Level'];
+                $profile_bio_notes  = $obj['bio'];
                 //$hireStatus = !empty($hiredTutorIdsList) && in_array($item['id'], $hiredTutorIdsList) ? 'hired' : '';
                 ?>
-                <div class="col-md-4">
-                    <div class="card tutor-card mx-auto shadow-sm">
-                        <div class="card-cover-pic">
-                            <img class="card-img-top" src="../revamp/static/img/card-bg-firewatch-0.png" alt="Card image cap">
-                            <div class="profile-photo-wrapper flex-center">
-                                <img src="< ?= $profile_photo ?>" class="tutor-profile-pic" alt="Tutor Profile">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="row px-3">
+                            <div class="col-4 gx-0">
+                                <img src="<?= $profile_photo ?>" class="profile-photo" alt="profile-photo">
                             </div>
+                            <div class="col"></div>
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title text-center">< ?= $obj['firstname'] .' '. $obj['lastname']; ?></h5>
+                        <h6 class="card-title tutor-name mt-3 mb-1">
+                            <i class="fas fa-circle-check <?= $hiredIndicator ?> accent-secondary me-2"></i>
+                            <?= htmlspecialchars($profile_name) ?>
+                        </h6>
+                        <span class="badge <?= $fluencyBadgeColor ?> mb-3">
+                            <i class="fas <?= $fluencyBadgeIcon ?> me-2"></i>
+                            <?= $fluencyLevelText ?>
+                        </span>
+                        <p class="card-text tutor-bio"><?= $profile_bio_notes ?></p>
+                        <div class="flex-end">
+                            <a href="#" class="btn btn-sm btn-secondary btn-more-details">More Details</a>
                         </div>
                     </div>
                 </div>
-                < ?php if (($key + 1) % 3 == 0): ?>
-                    </div>
-                    <div class="row mx-3 mb-5">
-                < ?php endif; ?>
-            < ?php endforeach; ?>
-        </div> -->
+            <?php endforeach ?>
+        </div>
+
     </section>
+
+    <footer class="px-3 py-4 text-center">
+        &copy; <?= date('Y') ?> SignLingua All rights reserved
+    </footer>
 
     <script src="../revamp/static/lib/jquery3.7.1/jquery-3.7.1.min.js"></script>
     <script src="../revamp/static/lib/popper2.9.2/popper.min.js"></script>

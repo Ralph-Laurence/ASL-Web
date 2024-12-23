@@ -60,34 +60,55 @@ section.tutors-list .tutors-list-view .card .tutor-name {
     color: var(--accent-dark);
 }
 
-
-/* section.tutors-list .tutor-card {
-    width: 350px;
-    min-height: 300px;
+section.tutors-list .tutors-list-view .card .tutor-bio {
+    height: 72px;
+    font-size: 16px;
+    line-height: 24px; /* Adjust line height to ensure proper spacing (16px font size * 1.5) */
     overflow: hidden;
-    border-radius: 0.5rem;
+    display: -webkit-box; /* Required for -webkit-line-clamp */
+    -webkit-box-orient: vertical; /* Required for -webkit-line-clamp */
+    -webkit-line-clamp: 3; /* Limit to 3 lines */
+    white-space: normal; /* Ensure normal white-space behavior */
+    text-overflow: ellipsis;
 }
 
-section.tutors-list .tutor-card .card-cover-pic {
-    position: relative;
-    height: 240px;
+section.tutors-list .tutors-list-view .card .btn-more-details {
+    background: #F1F2F3;
+    border: 1px solid #dee6ee;
+    color:#616161;
+    width: 110px;
 }
 
-section.tutors-list .tutor-card .card-img-top {
-    position: absolute;
+section.tutors-list .tutors-list-view .card .btn-more-details:hover,
+section.tutors-list .tutors-list-view .card .btn-more-details:active,
+section.tutors-list .tutors-list-view .card .btn-more-details:focus {
+    background: #FDC057;
+    border: 1px solid #FDAF3C;
+    outline: 0;
+    color:#4F1E05;
+    box-shadow: 0 0 0 4px rgba(246, 179, 33, 0.25);
+    font-family: 'Poppins-Medium';
+    width: 110px;
 }
 
-section.tutors-list .tutor-card .profile-photo-wrapper {
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+section.control-ribbon .search-button{
+    background-color: var(--accent-tertiary);
+    border: none;
+    color: white;
+    transition: background 0.12s ease-in-out;
 }
 
-section.tutors-list .tutor-card .tutor-profile-pic {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    border: 5px solid white;
+section.control-ribbon .search-button:hover {
+    background-color: var(--accent-primary);
+    color: white;
+    outline: 0;
+    border-color: var(--accent-secondary);
+    box-shadow: 0 0 0 4px rgba(246, 33, 85, 0.25);
 }
- */
+
+
+footer {
+    border-top: 2px solid var(--accent-secondary);
+    background-color: #0D1226;
+    color: white;
+}

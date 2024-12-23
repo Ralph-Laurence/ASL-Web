@@ -3,8 +3,11 @@
 }
 
 :root {
-    --base-dark:    #141C3A;
-    --accent-dark:  #2C1A4E;
+    --base-dark:        #141C3A;
+    --accent-dark:      #2C1A4E;
+    --accent-primary:   #FF9525;
+    --accent-secondary: #EF5B11;
+    --accent-tertiary:  #F62454;
 }
 
 @font-face {
@@ -15,6 +18,11 @@
 @font-face {
     font-family: 'Poppins-SemiBold';
     src: url('../fonts/Poppins-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins-Medium';
+    src: url('../fonts/Poppins-Medium.ttf');
 }
 
 html, body {
@@ -61,10 +69,79 @@ body {
     border: 2px solid #FB473A;
     border-radius: 20px;
     background: none;
+    color: var(--accent-dark);
 }
 
 .flex-center {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.flex-end {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.accent-secondary { color: var(--accent-secondary); }
+
+.badge-green {
+    background-color: #DCF1E4;
+    color: #0C622E;
+}
+
+.badge-red {
+    background-color: #FAE4E8;
+    color: #B03D50;
+}
+
+.badge-yellow {
+    background-color: #FBF1DD;
+    color: #896110;
+}
+
+.badge-cyan {
+    background-color: #E5F4F8;
+    color: #3B7E94;
+}
+
+.badge-gray {
+    background-color: #F1F2F3;
+    color: #616161;
+}
+
+.badge-pro {
+    background-color: var(--accent-dark);
+    color: #FFAE3B;
+}
+
+.text-14 {
+    font-size: 14px;
+}
+/* 
+.form-control.sign-lingua-input-field:focus {
+    color: #212529;
+    background-color: #fff;
+    outline: 0;
+    / * border-color: #7952b3;
+    box-shadow: 0 0 0 4px rgba(121, 82, 179, 0.25); * /
+    border-color: #FDC057;
+    box-shadow: 0 0 0 4px rgba(255, 174, 59, 0.25);
+} */
+
+.btn.sign-lingua-dropdown-button {
+    background: white !important;
+    border: 1px solid #ced4da !important;
+}
+
+.btn.sign-lingua-dropdown-button:hover,
+.btn.sign-lingua-dropdown-button:active,
+.btn.sign-lingua-dropdown-button:focus {
+    /* border-color: #FDC057 !important;
+    box-shadow: 0 0 0 4px rgba(255, 174, 59, 0.25) !important; */
+    border-color: #86b7fe !important;
+    box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25) !important;
+    color: var(--base-dark) !important;
+    background: white !important;
 }
